@@ -28,6 +28,7 @@ public class Advance : MonoBehaviour {
 
     public void Halt() {
         halted = true;
-        rb.velocity = new Vector3();
+        if (rb)
+            rb.velocity = new Vector3();
     }
 }

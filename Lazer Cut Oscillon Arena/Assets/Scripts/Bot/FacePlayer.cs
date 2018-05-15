@@ -25,7 +25,7 @@ public class FacePlayer : MonoBehaviour {
             transform.up = direction;
         }
         else {
-            Vector3 newLook = Vector3.RotateTowards(transform.up, direction, maxRad, 0f);
+            Vector3 newLook = Vector3.RotateTowards(transform.up, direction, maxRad * Time.deltaTime, 0f);
             transform.up = newLook;
         }
     }
