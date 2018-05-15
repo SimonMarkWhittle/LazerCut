@@ -25,8 +25,13 @@ public class FacePlayer : MonoBehaviour {
             transform.up = direction;
         }
         else {
+            /*
             Vector3 newLook = Vector3.RotateTowards(transform.up, direction, maxRad * Time.deltaTime, 0f);
-            transform.up = newLook;
+            transform.up = new Vector3(0, 0, newLook.z);
+            */
+            transform.Rotate(new Vector3(0, 0, (Vector2.SignedAngle(transform.up, direction))).normalized * 50 * Time.deltaTime); 
+            //Instead of 50 include some rotation speed var
+            //Also, include some logic to prevent jittering
         }
     }
 }
