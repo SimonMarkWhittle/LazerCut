@@ -22,8 +22,7 @@ public class GameManager : MonoBehaviour {
 
     public Text doneMessage;
 
-    public List<Transform> botSpots = new List<Transform>(16);
-    List<Transform> realSpots = new List<Transform>();
+
 
     public LayerMask playerMask;
     public LayerMask botMask;
@@ -31,9 +30,6 @@ public class GameManager : MonoBehaviour {
     void Awake() {
         instance = this;
         doneMessage.enabled = false;
-        for (int i = 0; i < 8; i++) {
-            realSpots.Add(botSpots[i]);
-        }
     }
 
     void Update() {
@@ -74,23 +70,6 @@ public class GameManager : MonoBehaviour {
             default:
                 break;
         }
-    }
-
-    public Transform GetSpot() {
-        /*
-        int range = realSpots.Count;
-        Transform spot = realSpots[Random.Range(0, range)];
-        realSpots.Remove(spot);
-        */
-        int range = botSpots.Count;
-        Transform spot = botSpots[Random.Range(0, range)];
-        botSpots.Remove(spot);
-        return spot;
-    }
-
-    public void ReturnSpot(Transform _spot) {
-        // realSpots.Add(_spot);
-        botSpots.Add(_spot);
     }
 
     public LayerMask GetMask(Team team) {

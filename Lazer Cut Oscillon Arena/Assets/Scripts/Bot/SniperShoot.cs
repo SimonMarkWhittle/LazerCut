@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class SniperShoot : MonoBehaviour {
 
-    GameObject player;
+    // GameObject player;
 
     public float damage = 2f;
 
@@ -26,7 +26,7 @@ public class SniperShoot : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        player = GameManager.Instance.player;
+        // player = GameManager.Instance.player;
         // mask = GameManager.Instance.playerMask;
         line = GetComponent<LineRenderer>();
 	}

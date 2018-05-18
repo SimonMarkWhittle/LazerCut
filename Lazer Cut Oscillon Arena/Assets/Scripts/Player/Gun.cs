@@ -16,12 +16,12 @@ public class Gun : MonoBehaviour {
     public float shootSpeed = 20f;
 
     Collider2D thisCollider;
-    Rigidbody2D rb;
+    // Rigidbody2D rb;
 
     // Use this for initialization
     void Start() {
         thisCollider = GetComponent<Collider2D>();
-        rb = GetComponent<Rigidbody2D>();
+        // rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame

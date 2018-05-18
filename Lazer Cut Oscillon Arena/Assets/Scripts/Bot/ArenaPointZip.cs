@@ -18,6 +18,8 @@ public class ArenaPointZip : MonoBehaviour {
 
     public bool holdOnMove = false;
 
+    bool startedOff;
+
     Rigidbody2D rb;
 
     BulletShooter shooter;
@@ -26,16 +28,17 @@ public class ArenaPointZip : MonoBehaviour {
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
         shooter = GetComponent<BulletShooter>();
+        startedOff = !shooter.enabled;
 	}
 	
 	// Update is called once per frame
 	void Update () {
         if (atDest && waitCount > waitTime) {
             //dest = Random.insideUnitCircle.normalized * 15f;
-            spot = GameManager.Instance.GetSpot();
+            spot = BotManager.Instance.GetSpot();
             dest = spot.position;
             atDest = false;
-            if (holdOnMove && shooter)
+            if (holdOnMove && shooter && !startedOff)
                 shooter.enabled = false;
         }
         else if (!atDest){
@@ -51,14 +54,15 @@ public class ArenaPointZip : MonoBehaviour {
                 atDest = true;
                 waitCount = 0f;
                 rb.velocity = new Vector3(0f, 0f, 0f);
-                GameManager.Instance.ReturnSpot(spot);
+                BotManager.Instance.ReturnSpot(spot);
                 spot = null;
             }
         }
         else {
             waitCount += Time.deltaTime;
-            if (shooter && !shooter.enabled)
+            if (shooter && !shooter.enabled && !startedOff) {
                 shooter.enabled = true;
+            }
         }
         // Debug.Log("Wait Count" + waitCount);
     }

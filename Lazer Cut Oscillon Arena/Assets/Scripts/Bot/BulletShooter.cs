@@ -8,14 +8,14 @@ public class BulletShooter : MonoBehaviour {
 
     public GameObject bullet;
     public float shootrate = 1f;
-    float shootcount = 0f;
+    protected float shootcount = 0f;
 
     public float shootspeed = 10f;
 
     public Color color = Color.red;
 
-    Collider2D thisCollider;
-    Rigidbody2D rb;
+    protected Collider2D thisCollider;
+    protected Rigidbody2D rb;
 
 	// Use this for initialization
 	void Start () {
@@ -28,24 +28,28 @@ public class BulletShooter : MonoBehaviour {
         if (shootcount < shootrate)
             shootcount += Time.deltaTime;
         else {
-            GameObject newBullet = Instantiate(bullet, transform.position, transform.rotation);
-
-            if (thisCollider) {
-                Collider2D newCollider = newBullet.GetComponent<Collider2D>();
-                Physics2D.IgnoreCollision(thisCollider, newCollider);
-            }
-
-            Bullet bulletScript = newBullet.GetComponent<Bullet>();
-            bulletScript.color = color;
-
-            if (rb) {
-                Rigidbody2D body = newBullet.GetComponent<Rigidbody2D>();
-                body.velocity += rb.velocity;
-            }
-
-            bulletScript.speed = shootspeed;
-
-            shootcount = 0f;
+            Shoot();
         }
 	}
+
+    protected virtual void Shoot() {
+        GameObject newBullet = Instantiate(bullet, transform.position, transform.rotation);
+
+        if (thisCollider) {
+            Collider2D newCollider = newBullet.GetComponent<Collider2D>();
+            Physics2D.IgnoreCollision(thisCollider, newCollider);
+        }
+
+        Bullet bulletScript = newBullet.GetComponent<Bullet>();
+        bulletScript.color = color;
+
+        if (rb) {
+            Rigidbody2D body = newBullet.GetComponent<Rigidbody2D>();
+            body.velocity += rb.velocity;
+        }
+
+        bulletScript.speed = shootspeed;
+
+        shootcount = 0f;
+    }
 }
