@@ -9,6 +9,7 @@ public class SniperShoot : MonoBehaviour {
 
     public float damage = 2f;
 
+    bool aiming = false;
     public float aimTime = 0.5f;
     float aimCount = 0f;
 
@@ -39,12 +40,19 @@ public class SniperShoot : MonoBehaviour {
             line.endColor = Color.blue;
             aimCount = 0f;
         }
+        else if (aiming && !shooting) {
+            aimCount += Time.deltaTime;
+        }
+        else if (aiming && aimCount > 0 && !shooting) {
+            aimCount -= Time.deltaTime * 0.5f;
+        }
 
         if (shooting && shootCount < shootDelay) {
             shootCount += Time.deltaTime;
         }
         else if (shooting) {
             shootCount = 0f;
+            aimCount = 0f;
             shooting = false;
             Shoot();
         }
@@ -57,12 +65,11 @@ public class SniperShoot : MonoBehaviour {
 
         GameObject go = hit.collider ? hit.collider.gameObject : null;
         if (go && go.CompareTag("Player")) {
-            aimCount += Time.fixedDeltaTime;
+            aiming = true;
             line.startColor = Color.green;
             line.endColor = Color.green;
         }
         else {
-            aimCount -= Time.fixedDeltaTime * 0.5f;
             line.startColor = Color.red;
             line.endColor = Color.red;
         }

@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 114251692456067680}
   m_Layer: 10
   m_Name: Shooty
-  m_TagString: Untagged
+  m_TagString: Bot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -169,6 +169,7 @@ MonoBehaviour:
   health: 2
   deathParticles: {fileID: 1797656799176278, guid: 0baca64732324ac458d201f5b39b7928,
     type: 2}
+  hurtColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114719512187102102
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -183,6 +184,7 @@ MonoBehaviour:
   team: 1
   bullet: {fileID: 1329090210484448, guid: 174d5102b4b58b74681ed848b9391eec, type: 2}
   shootrate: 1
+  shootspeed: 10
   color: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &114748842430083674
 MonoBehaviour:
@@ -195,6 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39446fea308262a489fa869a16a08471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxDegrees: 0
 --- !u!212 &212415711184021700
 SpriteRenderer:
   m_ObjectHideFlags: 1

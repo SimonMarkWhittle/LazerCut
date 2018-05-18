@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 114051867946885778}
   m_Layer: 10
   m_Name: Tracker
-  m_TagString: Untagged
+  m_TagString: Bot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -169,6 +169,7 @@ MonoBehaviour:
   health: 2
   deathParticles: {fileID: 1797656799176278, guid: 0baca64732324ac458d201f5b39b7928,
     type: 2}
+  hurtColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114704351025584118
 MonoBehaviour:
   m_ObjectHideFlags: 1
