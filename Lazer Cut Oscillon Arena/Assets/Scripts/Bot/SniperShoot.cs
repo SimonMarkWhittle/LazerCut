@@ -53,7 +53,7 @@ public class SniperShoot : MonoBehaviour {
     void FixedUpdate() {
         if (shooting) { return; }
 
-        hit = Physics2D.Raycast(transform.position, transform.up, 100f, mask);
+        hit = Physics2D.Raycast(transform.position + (transform.up * offset), transform.up, 100f, mask);
 
         GameObject go = hit.collider ? hit.collider.gameObject : null;
         if (go && go.CompareTag("Player")) {
