@@ -32,10 +32,13 @@ public class FacePlayer : MonoBehaviour {
 
 
             float angle = Vector2.SignedAngle(transform.up, direction);
-
-            if (Mathf.Abs(angle) < 1) { return; }
-
-            Vector3 rotate = new Vector3(0, 0, angle).normalized * maxDegrees * Time.deltaTime;
+            Vector3 rotate;
+            if (Mathf.Abs(angle) > maxDegrees * Time.deltaTime) {
+                rotate = new Vector3(0, 0, angle).normalized * maxDegrees * Time.deltaTime;
+            }
+            else {
+                rotate = new Vector3(0, 0, angle);
+            }
             
             transform.Rotate(rotate); 
             //Instead of 50 include some rotation speed var
