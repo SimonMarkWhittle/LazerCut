@@ -2,6 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Gate {
+    floor, wall,
+    outerFloor, innerFloor,
+    N, S, E, W, NE, NW, SE, SW,
+    RN, LN, RS, LS,
+    TE, BE, TW, BW,
+    TNW, BNW, TNE, BNE,
+    TSW, BSW, TSE, BSE,
+    FN, FS, FE, FW,
+    FNE, FNW, FSE, FSW,
+    FNNE, FENE, FNNW, FWNW,
+    FESE, FSSE, FWSW, FSSW
+}
+
+public enum Bot {
+    seeker, seekerSwarm,
+    exploder, exploderSwarm,
+    shooter, tracker,
+    shotgun, sniper,
+    beamer, bouncy,
+}
+
 public class BotManager : MonoBehaviour {
 
     public List<Transform> botSpots = new List<Transform>(32);
@@ -12,6 +34,12 @@ public class BotManager : MonoBehaviour {
     public static BotManager Instance { get { return instance; } }
 
     #endregion
+
+    public SerializableDictionary<Bot, GameObject> botPrefabs;
+    public SerializableDictionary<Gate, Transform> gateTransforms;
+
+    // public BotsDict botPrefabs;
+    // public GatesDict gateTransforms;
 
     void Awake() {
         instance = this;
@@ -43,4 +71,40 @@ public class BotManager : MonoBehaviour {
         // realSpots.Add(_spot);
         botSpots.Add(_spot);
     }
+
+    public void SpawnBot(Bot _bot, Gate _gate) {
+        GameObject prefab = botPrefabs[_bot];
+        Transform location = gateTransforms[_gate];
+        Instantiate(prefab, location.position, Quaternion.identity);
+    }
+}
+
+public class Phase {
+
+    List<BotSpawn> spawns = new List<BotSpawn>();
+
+
+
+}
+
+public class BotSpawn {
+    bool done = false;
+    bool Done { get { return done; } }
+
+    Bot bot;
+
+    Gate gate;
+
+    bool spawnReady = false;
+
+    public void Spawn() {
+        if (!spawnReady) { return; }
+    }
+
+}
+
+public class MultiSpawn : BotSpawn {
+
+
+
 }

@@ -17,7 +17,7 @@ public class TrackerBullet : Bullet {
         if (GameManager.Instance.player)
             player = GameManager.Instance.player.transform;
 
-        // maxRad = (Mathf.PI / 180f) * maxDegrees;
+        maxRad = (Mathf.PI / 180f) * maxDegrees;
     }
 
     // Update is called once per frame

@@ -32,7 +32,7 @@ public class ProximityDetect : MonoBehaviour, IObservable {
 
     void FixedUpdate() {
         if (team == Team.players) {
-            GameObject[] targets = FindBots(transform.position, radius, transform.forward, mask);
+            GameObject[] targets = FindBots(transform.position, radius, mask);
             if (targets.Length > 0)
                 PingObservers(new Dictionary<string, object> { { "targets", targets } });
         }
@@ -48,13 +48,19 @@ public class ProximityDetect : MonoBehaviour, IObservable {
             return new GameObject[] { };
     }
 
-    public static GameObject[] FindBots(Vector3 _position, float _radius, Vector3 _direction, LayerMask _mask) {
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(_position, _radius, _direction, _mask);
+    public static GameObject FindBot(Vector2 _position, float _radius, LayerMask _mask) {
+        Collider2D hit = Physics2D.OverlapCircle(_position, _radius, _mask);
+
+        return hit ? hit.gameObject : null;
+    }
+
+    public static GameObject[] FindBots(Vector2 _position, float _radius, LayerMask _mask) {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(_position, _radius, _mask);
 
         if (hits.Length > 0) {
             GameObject[] targets = new GameObject[hits.Length];
             for (int i = 0; i < hits.Length; i++) {
-                targets[i] = hits[i].collider.gameObject;
+                targets[i] = hits[i].gameObject;
             }
             return targets;
         }

@@ -13,7 +13,7 @@ public class Killable : MonoBehaviour, IObservable {
 
     List<IObserver> observers = new List<IObserver>();
 
-    public Color hurtColor;
+    // public Color hurtColor;
     SpriteRenderer sprite;
 
     void Awake() {

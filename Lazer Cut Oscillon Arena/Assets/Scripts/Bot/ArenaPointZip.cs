@@ -28,7 +28,8 @@ public class ArenaPointZip : MonoBehaviour {
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
         shooter = GetComponent<BulletShooter>();
-        startedOff = !shooter.enabled;
+        if (shooter)
+            startedOff = !shooter.enabled;
 	}
 	
 	// Update is called once per frame
@@ -65,5 +66,9 @@ public class ArenaPointZip : MonoBehaviour {
             }
         }
         // Debug.Log("Wait Count" + waitCount);
+    }
+
+    public void Zip() {
+
     }
 }

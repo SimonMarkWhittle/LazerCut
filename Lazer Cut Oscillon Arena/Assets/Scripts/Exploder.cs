@@ -86,7 +86,7 @@ public class Exploder : MonoBehaviour, IObserver {
         if (team == Team.bots)
             return ProximityDetect.FindPlayer(transform.position, radius);
         else if (team == Team.players)
-            return ProximityDetect.FindBots(transform.position, radius, transform.forward, mask);
+            return ProximityDetect.FindBots(transform.position, radius, mask);
         else
             return new GameObject[] { };
     }

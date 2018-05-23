@@ -150,7 +150,6 @@ MonoBehaviour:
   health: 2
   deathParticles: {fileID: 1797656799176278, guid: 0baca64732324ac458d201f5b39b7928,
     type: 2}
-  hurtColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &212205037282640370
 SpriteRenderer:
   m_ObjectHideFlags: 1
