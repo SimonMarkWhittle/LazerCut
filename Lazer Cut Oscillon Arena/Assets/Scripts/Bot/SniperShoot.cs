@@ -29,16 +29,11 @@ public class SniperShoot : MonoBehaviour {
 
     LineRenderer line;
 
-    FacePlayer facePlayer;
-
-    public Text debugText;
-
     // Use this for initialization
     void Start () {
         // player = GameManager.Instance.player;
         // mask = GameManager.Instance.playerMask;
         line = GetComponent<LineRenderer>();
-        facePlayer = GetComponent<FacePlayer>();
 	}
 	
 	// Update is called once per frame
@@ -48,8 +43,7 @@ public class SniperShoot : MonoBehaviour {
 		if (state == ShootState.aiming && aimCount > aimTime) {
             State = ShootState.shooting;
             aimCount = 0f;
-            /* if (facePlayer)
-                facePlayer.enabled = false; */
+
         }
         else if (state == ShootState.aiming) {
             aimCount += Time.deltaTime;
@@ -67,8 +61,6 @@ public class SniperShoot : MonoBehaviour {
             aimCount = 0f;
             Shoot();
             State = ShootState.seeking;
-            /* if (facePlayer)
-                facePlayer.enabled = true; */
         }
 
     }
@@ -102,16 +94,13 @@ public class SniperShoot : MonoBehaviour {
         switch (_state) {
             case ShootState.aiming:
                 toSet = Color.green;
-                debugText.text = "Aiming";
                 break;
             case ShootState.shooting:
                 toSet = Color.blue;
-                debugText.text = "Shooting";
                 break;
             case ShootState.seeking:
             default:
                 toSet = Color.red;
-                debugText.text = "Seeking";
                 break;
         }
         line.startColor = toSet;
